@@ -2,11 +2,13 @@ import Foundation
 
 
 
-infix operator ?! : NilCoalescingPrecedence
-
-public func ?!<T>(lhs: T?, rhs: Error) throws -> T {
-	if let lhs = lhs {
-		return lhs
+public extension Optional {
+	
+	func unwrap(orThrow error: Error) throws -> Wrapped {
+		guard let unwrapped = self else {
+			throw error
+		}
+		return unwrapped
 	}
-	throw rhs
+	
 }
