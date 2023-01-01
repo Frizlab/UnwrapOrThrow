@@ -1,12 +1,13 @@
 = UnwrapOrThrow
 François Lamboley <fload@me.com>
 
-This is a micro-package which simply create the `?!` operator.
+This is a micro-package which simply create the `?!` operator and the `unwrap(orThrow:)` convenience on `Error`.
 
 == Usage
 [source,swift]
 ----
+struct VarIsNil : Error {}
 let myOptionalVar: Int? = nil
-struct VarIsOptional : Error {}
-let nonOptionalOrThrow = myOptionalVar ?! VarIsOptional()
+let nonOptionalOrThrow1 = try myOptionalVar ?! VarIsNil()
+let nonOptionalOrThrow2 = try myOptionalVar.unwrap(orThrow: VarIsNil())
 ----
