@@ -4,9 +4,9 @@ import Foundation
 
 public extension Optional {
 	
-	func unwrap(orThrow error: Error) throws -> Wrapped {
+	func unwrap(orThrow error: @autoclosure () -> Error) throws -> Wrapped {
 		guard let unwrapped = self else {
-			throw error
+			throw error()
 		}
 		return unwrapped
 	}
