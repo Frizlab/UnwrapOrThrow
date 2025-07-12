@@ -11,7 +11,7 @@ public func ?!<T>(lhs: T?, rhs: @autoclosure () -> Error) throws -> T {
 	return lhs
 }
 
-#if swift(>=6)
+#if compiler(>=6)
 public func ?!<T, E : Error>(lhs: T?, rhs: @autoclosure () -> E) throws(E) -> T {
 	guard let lhs = lhs else {
 		throw rhs()
